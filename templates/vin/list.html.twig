@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Région</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Millésime</th>
+      <th scope="col">Contenance</th>
+      <th scope="col">Robe</th>
+      <th scope="col">Stock</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for vin in vins %}
+        <tr>
+            <th>{{ vin.region.nom }} </th>
+            <th scope="row">{{ vin.nom }}</th>
+            <td>{{ vin.millesime }}</td>
+            <td>{{ vin.contenance }}</td>
+            <td>{{ vin.robe }}</td>
+            <td>{{ vin.qttStock }}</td>
+        </tr>
+    {% endfor %} 
+  </tbody>
+</table>
+
+{% endblock %}
