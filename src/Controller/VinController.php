@@ -2,10 +2,11 @@
 
 namespace App\Controller;
 
+use App\Entity\Vin;
 use App\Repository\VinRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VinController extends AbstractController
 {
@@ -19,5 +20,15 @@ class VinController extends AbstractController
         ]);
     }
 
+    #[Route('/vin/show/{id}', name: 'vin.show')]
+    public function show(Vin $vin): Response
+    {
+        dump($vin);
+        return $this->render('vin/show.html.twig', [
+            'vin' => $vin,
+        ]);
+    }
+
 }
+
 

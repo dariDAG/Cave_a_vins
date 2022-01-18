@@ -11,6 +11,7 @@
       <th scope="col">Contenance</th>
       <th scope="col">Robe</th>
       <th scope="col">Stock</th>
+      <th scope="col"></th>
     </tr>
   </thead>
   <tbody>
@@ -22,6 +23,7 @@
             <td>{{ vin.contenance }}</td>
             <td>{{ vin.robe }}</td>
             <td>{{ vin.qttStock }}</td>
+            <th><a class="btn-btn-secondary" href="{{ path('vin.show', {id: vin.id}) }}">Voir</a></th>
         </tr>
     {% endfor %} 
   </tbody>
