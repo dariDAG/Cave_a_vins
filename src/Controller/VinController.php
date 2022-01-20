@@ -4,9 +4,11 @@ namespace App\Controller;
 
 use App\Entity\Vin;
 use App\Repository\VinRepository;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+
 
 class VinController extends AbstractController
 {
@@ -20,6 +22,7 @@ class VinController extends AbstractController
         ]);
     }
 
+    #[IsGranted('ROLE_ADMIN')]
     #[Route('/vin/show/{id}', name: 'vin.show')]
     public function show(Vin $vin): Response
     {
