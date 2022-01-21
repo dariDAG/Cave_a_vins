@@ -19,11 +19,11 @@
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="{{ path('home') }}">Cave à Vins</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{{ path('home') }}">Cave à Vins</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
             <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav">
                 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
@@ -31,22 +31,28 @@
                 <a class="nav-link " aria-current="page" href="{{ path('vin.list') }}">Gérer le stock</a>
                 </li>
                 <li class="nav-item">
-                <a class="nav-link" href="{{ path('region_index') }}">Gérer les régions</a>
+                <a class="nav-link" href="{{ path('region_index') }}"> Gérer les Régions </a>
+                </li>
                 {% endif %}
 
                 {% if is_granted('ROLE_ADMIN') %}
-                <li class="nav-item">
+                {# <li class="nav-item">
                 <a class="nav-link" href="{{ path('user.new') }}">Nouveau Client</a>
+                </li> #}
+                <li class="nav-item">
+                <a class="nav-link" href="{{ path('user.list') }}"> Gérer les Utilisateurs </a>
                 </li>
                 {% endif %}
 
-                </li>
                 <li class="nav-item">
-                <a class="nav-link" href="#">A propos</a>
+                <a class="nav-link" href="#"> A propos </a>
                 </li>
+                <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                    <button class="btn btn-outline-success me-md-2" type="button">Connexion</button>
+                    <button class="btn btn-outline-secondary" type="button">Deconnexion</button>
+                </div>
             </ul>
-            </div>
-            </div>
+            
         </nav>
         <div class="container">
         {% block body %}{% endblock %}

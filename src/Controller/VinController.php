@@ -12,6 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class VinController extends AbstractController
 {
+    //#[IsGranted('IS_AUTHENTICATED_FULLY')]
     #[Route('/vin/list', name: 'vin.list')]
     public function list(VinRepository $vinRepository): Response
     {
