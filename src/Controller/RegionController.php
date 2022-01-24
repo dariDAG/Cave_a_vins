@@ -14,7 +14,7 @@ use Symfony\Component\Routing\Annotation\Route;
 #[Route('/region')]
 class RegionController extends AbstractController
 {
-    #[Route('/list', name: 'region_index', methods: ['GET'])]
+    #[Route('/', name: 'region_index', methods: ['GET'])]
     public function index(RegionRepository $regionRepository): Response
     {
         return $this->render('region/index.html.twig', [
@@ -71,9 +71,12 @@ class RegionController extends AbstractController
     #[Route('/{id}', name: 'region_delete', methods: ['POST'])]
     public function delete(Request $request, Region $region, EntityManagerInterface $entityManager): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$region->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $region->getId(), $request->request->get('_token'))) {
             $entityManager->remove($region);
             $entityManager->flush();
+        }else{
+            $this->addFlash('notif', 'jetom CSRF invalide');
+
         }
 
         return $this->redirectToRoute('region_index', [], Response::HTTP_SEE_OTHER);

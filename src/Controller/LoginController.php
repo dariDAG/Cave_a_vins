@@ -71,7 +71,7 @@ class LoginController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}', name: 'user.show', methods: ['GET'])]
+    #[Route('/user/{id}', name: 'user.show', methods: ['GET'])]
     public function show(User $user): Response
     {
         return $this->render('login/show.html.twig', [
@@ -79,25 +79,50 @@ class LoginController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/edit', name: 'user.edit', methods: ['GET', 'POST'])]
+    // #[Route('/user/{id}/edit', name: 'user.edit', methods: ['GET', 'POST'])]
+    // public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
+    // {
+    //     $form = $this->createForm(UserType::class, $user);
+    //     $form->handleRequest($request);
+
+    //     if ($form->isSubmitted() && $form->isValid()) {
+    //         $entityManager->flush();
+
+    //         return $this->redirectToRoute('user.list', [], Response::HTTP_SEE_OTHER);
+    //     }
+
+    //     return $this->renderForm('login/edit.html.twig', [
+    //         'user' => $user,
+    //         'form' => $form,
+    //     ]);
+    // }
+
+    #[Route('/user/{id}/edit', name: 'user.edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(UserType::class, $user);
-        $form->handleRequest($request);
+        
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager->flush();
-
-            return $this->redirectToRoute('user.list', [], Response::HTTP_SEE_OTHER);
+        if ($request->getMethod() === 'POST') {
+            //dump($request->get('email'));
+            //dump($user->getEmail());
+            $email = $request->get('email');
+            if ($email !== $user->getEmail()) {
+                $user->setEmail($email);
+                $entityManager->flush();
+                
+            }
+            return $this->redirectToRoute('user.list');
         }
 
-        return $this->renderForm('login/edit.html.twig', [
+        return $this->renderForm('login/formEdit.html.twig', [
             'user' => $user,
-            'form' => $form,
+            
         ]);
     }
 
-    #[Route('/{id}', name: 'id.delete', methods: ['POST'])]
+
+
+    #[Route('/user/{id}', name: 'id.delete', methods: ['POST'])]
     public function delete(Request $request, User $user, EntityManagerInterface $entityManager): Response
     {
         if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {

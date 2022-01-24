@@ -19,7 +19,7 @@
 
     <a href="{{ path('user.list') }}">back to list</a>
 
-    <a href="{{ path('user.show', {'id': user.id}) }}">edit</a>
+    <a href="{{ path('user.edit', {'id': user.id}) }}">editer</a>
 
     {{ include('login/_delete_form.html.twig') }}
 {% endblock %}

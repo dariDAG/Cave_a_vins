@@ -54,6 +54,13 @@
             </ul>
             
         </nav>
+
+        {% for message in app.flashes('notif')%}
+            <div class="flash-notice alert alert-warning" role="alert">
+                {{ message }}
+            </div>
+        {% endfor %}
+
         <div class="container">
         {% block body %}{% endblock %}
         </div>
