@@ -10,6 +10,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 #[Route('/region')]
 class RegionController extends AbstractController
@@ -28,8 +29,10 @@ class RegionController extends AbstractController
         $region = new Region();
         $form = $this->createForm(RegionType::class, $region);
         $form->handleRequest($request);
+        
 
         if ($form->isSubmitted() && $form->isValid()) {
+            
             $entityManager->persist($region);
             $entityManager->flush();
 
@@ -39,6 +42,7 @@ class RegionController extends AbstractController
         return $this->renderForm('region/new.html.twig', [
             'region' => $region,
             'form' => $form,
+            
         ]);
     }
 

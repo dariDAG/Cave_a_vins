@@ -23,10 +23,13 @@
             <td>{{ vin.contenance }}</td>
             <td>{{ vin.robe }}</td>
             <td>{{ vin.qttStock }}</td>
-            <th><a class="btn-btn-secondary" href="{{ path('vin.show', {id: vin.id}) }}">Voir</a></th>
+            <th><a class="btn btn-secondary" href="{{ path('vin.show', {id: vin.id}) }}">Voir</a></th>
         </tr>
     {% endfor %} 
   </tbody>
 </table>
+<br>
+
+<a href="{{ path('vin.new') }}" class="btn btn-primary">Nouveau Vin</a>
 
 {% endblock %}

@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Symfony\Component\Validator\Constraints as Assert; 
 use App\Repository\RegionRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,6 +14,7 @@ class Region
     #[ORM\Column(type: 'integer')]
     private $id;
 
+    #[Assert\NotBlank(message: 'le nom de la région ne peut pas etre vite')]
     #[ORM\Column(type: 'string', length: 255)]
     private $nom;
 
