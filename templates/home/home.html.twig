@@ -3,5 +3,45 @@
 {% block body %}
 
     <h1>Bienvenue sur la cave à vins ✅</h1>
+    <br>
+    <div class="row">
+        <div class="card col-4">
+            <div class="card-header">Stock en Cave</div>
+            <div class="card-body">
+            <h5 class="card-title">Nombre de bouteilles : {{ stocks['total'] }}</h5>
+            <br>
+            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            </div>
+        </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+        <div class="card col-4">
+            <div class="card-header">Stock de Rouge</div>
+            <div class="card-body">
+            <h5 class="card-title">Nombre de bouteilles : {{ stocks['rouge'] }}</h5>
+            <br>
+            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            </div>
+        </div>
+        <div class="card col-4">
+            <div class="card-header">Stock de Blanc</div>
+            <div class="card-body">
+            <h5 class="card-title">Nombre de bouteilles : {{ stocks['blanc'] }}</h5>
+            <br>
+            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            </div>
+        </div>
+        <div class="card col-4">
+            <div class="card-header">Stock de Rose</div>
+            <div class="card-body">
+            <h5 class="card-title">Nombre de bouteilles : {{ stocks['rose'] }}</h5>
+            <br>
+            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            </div>
+        </div>
+    </div>
+
 
 {% endblock %}
