@@ -16,10 +16,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class VinController extends AbstractController
 {
     //#[IsGranted('IS_AUTHENTICATED_FULLY')]
-    #[Route('/vin/list', name: 'vin.list')]
-    public function list(VinRepository $vinRepository): Response
+    #[Route('/vin/list/{robe}', name: 'vin.list')]
+    public function list(VinRepository $vinRepository, Request $req): Response
     {
-        $vins = $vinRepository->findAll();
+        $critere = $req->get('robe');
+        if($critere !== 'all'){
+            $vins = $vinRepository->findBy(['robe' => $critere],['qtt_stock' => 'ASC']);
+        } else {
+            $vins = $vinRepository->findAll();
+        }
+        
+    
         //dump($vins);
         return $this->render('vin/list.html.twig', [
             'vins' => $vins,

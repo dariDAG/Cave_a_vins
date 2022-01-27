@@ -10,7 +10,7 @@
             <div class="card-body">
             <h5 class="card-title">Nombre de bouteilles : {{ stocks['total'] }}</h5>
             <br>
-            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            <a href="{{ path('vin.list', {robe: 'all'}) }}" class="btn btn-primary">Voir le Stock</a>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
             <div class="card-body">
             <h5 class="card-title">Nombre de bouteilles : {{ stocks['rouge'] }}</h5>
             <br>
-            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            <a href="{{ path('vin.list', {robe: 'rouge'}) }}" class="btn btn-primary">Voir le Stock</a>
             </div>
         </div>
         <div class="card col-4">
@@ -30,7 +30,7 @@
             <div class="card-body">
             <h5 class="card-title">Nombre de bouteilles : {{ stocks['blanc'] }}</h5>
             <br>
-            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            <a href="{{ path('vin.list', {robe: 'blanc'}) }}" class="btn btn-primary">Voir le Stock</a>
             </div>
         </div>
         <div class="card col-4">
@@ -38,7 +38,7 @@
             <div class="card-body">
             <h5 class="card-title">Nombre de bouteilles : {{ stocks['rose'] }}</h5>
             <br>
-            <a href="{{ path('vin.list')}}" class="btn btn-primary">Voir le Stock</a>
+            <a href="{{ path('vin.list', {robe: 'rose'}) }}" class="btn btn-primary">Voir le Stock</a>
             </div>
         </div>
     </div>
