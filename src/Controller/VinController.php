@@ -20,13 +20,13 @@ class VinController extends AbstractController
     public function list(VinRepository $vinRepository, Request $req): Response
     {
         $critere = $req->get('robe');
-        if($critere !== 'all'){
-            $vins = $vinRepository->findBy(['robe' => $critere],['qtt_stock' => 'ASC']);
+        if ($critere !== 'all') {
+            $vins = $vinRepository->findBy(['robe' => $critere], ['qtt_stock' => 'ASC']);
         } else {
             $vins = $vinRepository->findAll();
         }
-        
-    
+
+
         //dump($vins);
         return $this->render('vin/list.html.twig', [
             'vins' => $vins,
@@ -49,25 +49,20 @@ class VinController extends AbstractController
         $vin = new Vin();
         $form = $this->createForm(VinType::class, $vin);
         $form->handleRequest($request);
-        
+
 
         if ($form->isSubmitted() && $form->isValid()) {
-            
+
             $entityManager->persist($vin);
             $entityManager->flush();
 
-            return $this->redirectToRoute( 'vin.list', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('vin.list', [], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('vin/formNew.html.twig', [
-            
+
             'formNew' => $form,
-            
+
         ]);
     }
-
 }
-
-
-
-

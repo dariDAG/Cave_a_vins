@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\Region;
 use App\Form\RegionType;
 use App\Repository\RegionRepository;
+use App\Service\MessageGenerator;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -73,13 +74,13 @@ class RegionController extends AbstractController
     }
 
     #[Route('/{id}', name: 'region_delete', methods: ['POST'])]
-    public function delete(Request $request, Region $region, EntityManagerInterface $entityManager): Response
+    public function delete(Request $request, Region $region, EntityManagerInterface $entityManager, MessageGenerator $msgGen): Response
     {
         if ($this->isCsrfTokenValid('delete' . $region->getId(), $request->request->get('_token'))) {
             $entityManager->remove($region);
             $entityManager->flush();
         }else{
-            $this->addFlash('notif', 'jetom CSRF invalide');
+            $this->addFlash('notif', $msgGen->getMessage('csrfNok'));
 
         }
 
